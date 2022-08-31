@@ -18,7 +18,7 @@ const NewCarForm = ({
           <select id="workers" value={worker} onChange={handleWorker}>
             <option value="defaultValue"> ---Choose worker--- </option>
             {workers.map((w) => (
-              <option required key={w.id} value={w.id}>
+              <option key={w.id} value={w.id}>
                 {w.name}
               </option>
             ))}
