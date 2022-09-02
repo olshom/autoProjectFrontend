@@ -11,7 +11,6 @@ const App = () => {
 
   const [worker, setWorker] = useState('')
   const [workers, setWorkers] = useState([])
-  const [user, setUser] = useState(null)
   const [cars, setCars] = useState([])
   const [loggedUser, setLoggedUser] = useState(null)
 
@@ -52,37 +51,22 @@ const App = () => {
     })
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  // try {
+  //   const loggedUser = await loginService.login({ user, password })
+  //   setLoggedUser(loggedUser)
+  //   setUser(null)
+  //   setPassword('')
+  // } catch (exception) {
+  //   // setErrorMessage('Wrong credentials')
+  //   // setTimeout(() => {
+  //   //   setErrorMessage(null)
+  //   // }, 5000)
+  //   console.log('wrong credentials')
+  // }
 
-    console.log('logging in with', user, password)
-
-    // try {
-    //   const loggedUser = await loginService.login({ user, password })
-    //   setLoggedUser(loggedUser)
-    //   setUser(null)
-    //   setPassword('')
-    // } catch (exception) {
-    //   // setErrorMessage('Wrong credentials')
-    //   // setTimeout(() => {
-    //   //   setErrorMessage(null)
-    //   // }, 5000)
-    //   console.log('wrong credentials')
-    // }
-  }
   return (
     <div>
-      <Login
-        workers={workers}
-        handleLogin={handleLogin}
-        handleUserChange={(event, value) => {
-          console.log('value', value)
-          setUser(value)
-        }}
-        user={user}
-        password={password}
-        setPassword={setPassword}
-      />
+      <Login workers={workers} password={password} setPassword={setPassword} />
       <NewCarForm
         addNewCar={addNewCar}
         carNumber={carNumber}
