@@ -1,3 +1,7 @@
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+
+
 const NewCarForm = ({
   addNewCar,
   carNumber,
@@ -11,7 +15,7 @@ const NewCarForm = ({
       <form onSubmit={addNewCar}>
         <div>
           number:{' '}
-          <input value={carNumber} required onChange={handleCarNumber} />
+          <TextField size="small" sx={{ width: 300 }} required value={carNumber} onChange={handleCarNumber} />
         </div>
         <div>
           worker:{' '}
@@ -25,7 +29,8 @@ const NewCarForm = ({
           </select>
         </div>
         <div>
-          <button type="submit">add a car</button>
+          
+          <Button type="submit" variant="contained" size="medium">add a car</Button>
         </div>
       </form>
     </div>

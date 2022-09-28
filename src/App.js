@@ -15,6 +15,7 @@ const App = () => {
   const [loggedUser, setLoggedUser] = useState(null)
 
   const [password, setPassword] = useState('')
+
   useEffect(() => {
     carsService.getAll().then((response) => {
       setCars(response.data)
@@ -43,11 +44,11 @@ const App = () => {
       stateID: 1,
       worker: worker,
     }
-    carsService.create(carObject).then((response) => {
-      console.log(response)
-      setCars(cars.concat(response.data))
-      setCarNumber('')
-      setWorker('defaultValue')
+    carsService.create(carObject).then((returnedCar) => {
+
+        setCars(cars.concat(returnedCar))
+        setCarNumber('')
+        setWorker('defaultValue')
     })
   }
 
