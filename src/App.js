@@ -8,13 +8,9 @@ import Login from './components/Login'
 
 const App = () => {
   const [carNumber, setCarNumber] = useState('')
-
   const [worker, setWorker] = useState('')
   const [workers, setWorkers] = useState([])
   const [cars, setCars] = useState([])
-  const [loggedUser, setLoggedUser] = useState(null)
-
-  const [password, setPassword] = useState('')
 
   useEffect(() => {
     carsService.getAll().then((response) => {
@@ -52,22 +48,9 @@ const App = () => {
     })
   }
 
-  // try {
-  //   const loggedUser = await loginService.login({ user, password })
-  //   setLoggedUser(loggedUser)
-  //   setUser(null)
-  //   setPassword('')
-  // } catch (exception) {
-  //   // setErrorMessage('Wrong credentials')
-  //   // setTimeout(() => {
-  //   //   setErrorMessage(null)
-  //   // }, 5000)
-  //   console.log('wrong credentials')
-  // }
-
   return (
     <div>
-      <Login workers={workers} password={password} setPassword={setPassword} />
+      <Login workers={workers} />
       <NewCarForm
         addNewCar={addNewCar}
         carNumber={carNumber}

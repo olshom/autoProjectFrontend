@@ -2,16 +2,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import Button from '@mui/material/Button'
+import loginService from '../services/login'
 
 const Login = (props) => {
   const {
-    workers,
-    //   handleLogin,
-    //  handleUserChange,
-    //   user,
-    password,
-    setPassword,
+    workers
   } = props
+  const [username, setUsername] = useState(null)
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   const passPart1 = useRef(null)
@@ -21,18 +19,26 @@ const Login = (props) => {
 
   const handleUserChange = (event, value) => {
     console.log('value', value)
-    setUser(value)
+    setUsername(value)
   }
   const handleLogin = async (event) => {
     event.preventDefault()
 
-    console.log('logging in with', user, password)
+    console.log('logging in with', username, password)
+
+    try {
+      const user = await loginService.login({
+        username, password,
+      })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch(exception) {
+      console.log('wrong credentials')
+    }
+
   }
-  //   useEffect(() => {
-  //     if (user.length > 2) {
-  //       passPart1.current.focus()
-  //     }
-  //   }, [user])
+
   return (
     <form onSubmit={handleLogin}>
       <p>Log in</p>
@@ -49,7 +55,7 @@ const Login = (props) => {
           )}
           size="small"
           onChange={handleUserChange}
-          value={user}
+          value={username}
         />
       </div>
       <p>pin</p>
